@@ -19,7 +19,7 @@ export default function Login() {
         .eq("username", inputValue.username)
         .eq("password", inputValue.password);
 
-      console.log(data);
+      const singleData = data[0];
 
       if (error) {
         throw error;
@@ -39,7 +39,22 @@ export default function Login() {
 
       localStorage.setItem("admin", JSON.stringify(data[0]));
 
-      navigate("/");
+      switch (singleData?.type) {
+        case 1:
+          navigate("/");
+          break;
+
+        case 2:
+          navigate("/dashboard");
+          break;
+
+        case 3:
+          navigate("/laporanKerusakanFasilitas");
+          break;
+
+        default:
+          break;
+      }
     } catch (error) {
       Swal.fire({
         title: "Gagal Login",
