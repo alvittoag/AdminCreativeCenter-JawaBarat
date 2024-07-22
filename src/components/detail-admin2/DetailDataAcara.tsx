@@ -3,11 +3,16 @@ import { NavLink, useNavigate } from "react-router-dom";
 import convertStringify from "../../lib/convertStringify";
 import { supabase } from "../../lib/supabase";
 import Swal from "sweetalert2";
+import { getValues } from "../../lib/getValues";
 
 export default function DetailDataAcara({ id, dataAcara, surat }) {
   const ruangan = convertStringify(dataAcara.ruangan);
 
   const navigate = useNavigate();
+
+  const peserta = convertStringify(dataAcara.jumlahPesertas);
+
+  console.log(peserta);
 
   const handleConfirm = async () => {
     try {
@@ -63,7 +68,7 @@ export default function DetailDataAcara({ id, dataAcara, surat }) {
           <p className="mb-2">{dataAcara.tanggalAkhirAcara}</p>
           <p className="mb-2">{dataAcara.jamMulai}</p>
           <p className="mb-2">{dataAcara.jamBerakhir}</p>
-          <p className="mb-2">{dataAcara.jumlahPeserta}</p>
+          <p className="mb-2">{getValues(peserta).join(", ")}</p>
           <a href={surat} target="_blank" className="underline">
             Lihat Surat Permohonan
           </a>

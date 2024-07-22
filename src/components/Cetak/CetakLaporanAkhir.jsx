@@ -2,6 +2,7 @@ import React from "react";
 import convertStringify from "../../lib/convertStringify";
 import { downloadExcel } from "react-export-table-to-excel";
 import Swal from "sweetalert2";
+import { getValues } from "../../lib/getValues";
 
 export default function CetakLaporanAkhir({ data }) {
   console.log(data);
@@ -37,14 +38,16 @@ export default function CetakLaporanAkhir({ data }) {
     const dataExcel = filtered.map((item) => {
       const ruanganString = convertStringify(item.acara).ruangan;
 
-      const ruangan = JSON.parse(ruanganString).join(", ");
+      const pesertasString = convertStringify(item.acara).jumlahPesertas;
+
+      const peserta = getValues(convertStringify(pesertasString)).join(", ");
       return {
         "No Pemohon": item.id,
         "Nama Pemohon": convertStringify(item.pemohon).namaPemohon,
         "Nama Acara": convertStringify(item.acara).namaAcara,
         "Lokasi Gedung": convertStringify(item.acara).lokasiGedung,
         "Tanggal Mulai": convertStringify(item.acara).tanggalMulaiAcara,
-        "Jumlah Peserta": convertStringify(item.acara).jumlahPeserta,
+        "Jumlah Peserta": peserta,
         "Rangkuman Acara": item.rangkuman_acara,
       };
     });

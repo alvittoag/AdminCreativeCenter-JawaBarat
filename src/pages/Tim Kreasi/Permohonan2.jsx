@@ -1,10 +1,10 @@
 import React from "react";
 import SideNav from "../../components/SideNav.jsx/SideNav";
-import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 import { supabase } from "../../lib/supabase";
 import convertStringify from "../../lib/convertStringify";
 import Cetak from "../../components/Cetak/Cetak";
+import { getValues } from "../../lib/getValues";
 
 export default function Permohonan2() {
   const [data, setData] = React.useState([]);
@@ -21,13 +21,18 @@ export default function Permohonan2() {
 
         const bcc = data.filter(
           (item) =>
-            (convertStringify(item.acara).lokasiGedung ===
-              "Bogor Creative Center" &&
-              item.admin_status === "Diterima") ||
-            item.admin_status === "Ditolak"
+            convertStringify(item.acara).lokasiGedung ===
+            "Bogor Creative Center"
         );
 
-        const reverse = bcc.reverse();
+        const filterd = bcc.filter(
+          (item) =>
+            item.admin_status === "Diterima" ||
+            item.admin_status === "Ditolak" ||
+            item.admin_status === "Dibatalkan"
+        );
+
+        const reverse = filterd.reverse();
 
         setData(reverse);
       } catch (error) {
@@ -90,8 +95,6 @@ export default function Permohonan2() {
 
       setRefetch(Math.random());
 
-      navi;
-
       Swal.fire({
         icon: "success",
         title: "Berhasil",
@@ -146,8 +149,10 @@ export default function Permohonan2() {
                   const acara = convertStringify(item.acara);
 
                   const ruangan = convertStringify(acara.ruangan).join(", ");
+
+                  const peserta = convertStringify(acara.jumlahPesertas);
                   return (
-                    <tr className="text-center border-b-2">
+                    <tr className="text-center border-b-2" key={item.id}>
                       <td>{item.id}</td>
                       <td className="cursor-pointer">
                         <div
@@ -173,7 +178,7 @@ export default function Permohonan2() {
                       <td className="text-center">{ruangan}</td>
                       <td>{convertStringify(item.acara).jenisAcara}</td>
                       <td>{convertStringify(item.acara).subsektorAcara}</td>
-                      <td>{convertStringify(item.acara).jumlahPeserta}</td>
+                      <td>{getValues(peserta).join(", ")}</td>
 
                       {item.admin_utama_status === "Diterima" && (
                         <td>

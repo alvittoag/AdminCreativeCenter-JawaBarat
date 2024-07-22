@@ -4,6 +4,7 @@ import { supabase } from "../../lib/supabase";
 import Swal from "sweetalert2";
 import convertStringify from "../../lib/convertStringify";
 import CetakLaporanAkhir from "../../components/Cetak/CetakLaporanAkhir";
+import { getValues } from "../../lib/getValues";
 
 export default function LaporanAD() {
   const [data, setData] = React.useState([]);
@@ -73,14 +74,18 @@ export default function LaporanAD() {
                   const dataPemohon = convertStringify(pemohon);
                   const dataAcara = convertStringify(acara);
 
+                  const peserta = getValues(
+                    convertStringify(dataAcara.jumlahPesertas)
+                  ).join(", ");
+
                   return (
-                    <tr className="text-center border-b-2">
+                    <tr key={item.id} className="text-center border-b-2">
                       <td>{item.id}</td>
                       <td>{dataPemohon.namaPemohon}</td>
                       <td>{dataAcara.namaAcara}</td>
                       <td>{dataAcara.lokasiGedung}</td>
                       <td>{dataAcara.tanggalMulaiAcara}</td>
-                      <td>{dataAcara.jumlahPeserta}</td>
+                      <td>{peserta}</td>
                       <td className="text-justify">{item.rangkuman_acara}</td>
                     </tr>
                   );

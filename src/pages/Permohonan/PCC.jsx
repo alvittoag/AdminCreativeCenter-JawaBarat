@@ -5,6 +5,7 @@ import { supabase } from "../../lib/supabase";
 import Swal from "sweetalert2";
 import convertStringify from "../../lib/convertStringify";
 import CetakPermohonanAdmin2 from "../../components/Cetak/CetakPermohonanAdmin2";
+import { getValues } from "../../lib/getValues";
 
 export default function PCC() {
   const [data, setData] = React.useState([]);
@@ -75,6 +76,8 @@ export default function PCC() {
 
                   const ruangan = convertStringify(acara.ruangan).join(", ");
 
+                  const peserta = convertStringify(acara.jumlahPesertas);
+
                   return (
                     <tr key={item.id} className="text-center border-b-2">
                       <td>{item.id}</td>
@@ -109,6 +112,7 @@ export default function PCC() {
                       <td>{convertStringify(item.acara).jenisAcara}</td>
                       <td>{convertStringify(item.acara).subsektorAcara}</td>
                       <td>{convertStringify(item.acara).jumlahPeserta}</td>
+                      <td>{getValues(peserta).join(", ")}</td>
                     </tr>
                   );
                 })}

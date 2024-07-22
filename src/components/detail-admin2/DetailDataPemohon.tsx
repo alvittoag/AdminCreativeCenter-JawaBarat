@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function DetailDataPemohon({ dataPemohon, ktp }) {
+  console.log(dataPemohon);
   return (
     <div className="overflow-x-auto my-20 w-auto bg-slate-50 text-black rounded-md border p-10 ">
       <div className="flex">
@@ -26,7 +27,7 @@ export default function DetailDataPemohon({ dataPemohon, ktp }) {
           <p className="mb-2">{dataPemohon.noPemohon}</p>
           <p className="mb-2">{dataPemohon.emailPemohon}</p>
           <p className="mb-2">{dataPemohon.nikPemohon}</p>
-          <a href={ktp} target="_blank" className="underline">
+          <a href={dataPemohon.ktp} target="_blank" className="underline">
             Lihat KTP
           </a>
         </div>

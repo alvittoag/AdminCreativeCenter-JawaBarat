@@ -2,6 +2,7 @@ import React from "react";
 import convertStringify from "../../lib/convertStringify";
 import { downloadExcel } from "react-export-table-to-excel";
 import Swal from "sweetalert2";
+import { getValues } from "../../lib/getValues";
 
 export default function Cetak({ data }) {
   const [inputValue, setInputValue] = React.useState({
@@ -37,6 +38,11 @@ export default function Cetak({ data }) {
       const ruanganString = convertStringify(item.acara).ruangan;
 
       const ruangan = JSON.parse(ruanganString).join(", ");
+
+      const pesertasString = convertStringify(item.acara).jumlahPesertas;
+
+      const peserta = getValues(convertStringify(pesertasString)).join(", ");
+
       return {
         "No Pemohon": item.id,
         Status: item.admin_utama_status,
@@ -48,7 +54,7 @@ export default function Cetak({ data }) {
         Ruangan: ruangan,
         "Jenis Acara": convertStringify(item.acara).jenisAcara,
         "Subsektor Acara": convertStringify(item.acara).subsektorAcara,
-        "Jumlah Peserta": convertStringify(item.acara).jumlahPeserta,
+        "Jumlah Peserta": peserta,
       };
     });
 
