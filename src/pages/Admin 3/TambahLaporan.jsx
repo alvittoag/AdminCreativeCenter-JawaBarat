@@ -2,17 +2,19 @@ import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { supabase } from "../../lib/supabase";
 import Swal from "sweetalert2";
+import Select from "react-select";
 
 export default function TambahLaporan() {
-  const [dataUsers, setDataUsers] = React.useState([]);
+  const [dataPeminjam, setDataPeminjam] = React.useState([]);
   const [selectOptions, setSelectOptions] = React.useState([]);
+  const [selectPemohon, setSelectPemohon] = React.useState(null);
 
   const [bukti, setBukti] = React.useState(null);
   const [loadingUpload, setLoadingUpload] = React.useState(false);
 
   const [dataInput, setDataInput] = React.useState({
     user_id: "",
-    lokasi_gedung: "Bogor Creative Center",
+    lokasi_gedung: "",
     tanggal: "",
     denda: "",
   });
@@ -29,13 +31,21 @@ export default function TambahLaporan() {
   React.useEffect(() => {
     const getData = async () => {
       try {
-        let { data, error } = await supabase.from("users").select("*");
+        let { data, error } = await supabase.from("peminjaman").select("*");
+
+        const manimpulate = data.map((item) => {
+          return {
+            value: { ...item },
+            label: `No Pemohon (${item.id})  - ${
+              JSON.parse(item.pemohon).namaPemohon
+            }`,
+          };
+        });
 
         if (error) {
           throw error;
         }
-
-        setDataUsers(data);
+        setDataPeminjam(manimpulate);
       } catch (err) {
         Swal.fire({
           icon: "error",
@@ -47,6 +57,19 @@ export default function TambahLaporan() {
 
     getData();
   }, []);
+
+  React.useEffect(() => {
+    if (selectPemohon) {
+      setDataInput((prev) => ({
+        ...prev,
+        user_id: selectPemohon?.user_id,
+        lokasi_gedung: selectPemohon?.lokasi_gedung,
+        tanggal: selectPemohon?.tanggal,
+      }));
+
+      setSelectOptions(JSON.parse(selectPemohon?.ruangan));
+    }
+  }, [selectPemohon]);
 
   const navigate = useNavigate();
 
@@ -150,33 +173,30 @@ export default function TambahLaporan() {
     }
   };
 
+  console.log(dataInput);
+
   return (
     <div className="bg-white">
       <div className=" mx-auto items-center justify-center flex ">
         <div className="rounded-lg border mt-10 p-10 text-black">
-          <p className="mb-2">Nama Pemohon</p>
-          <label className="flex form-control w-full max-w-xs mt-4">
-            <select
-              onChange={(e) =>
-                setDataInput((prev) => ({ ...prev, user_id: e.target.value }))
-              }
-              className="select select-bordered bg-white placeholder:text-sm text-black"
-              name="user_id"
-            >
-              <option disabled value={""} selected>
-                Pilih
-              </option>
-              {dataUsers.map((user) => (
-                <option key={user.id} value={user.id}>
-                  {user.nama}
-                </option>
-              ))}
-            </select>
-          </label>
+          <p className="mb-2">No Pemohon</p>
+          <Select
+            placeholder="Pilih No Pemohon"
+            onChange={(e) =>
+              setSelectPemohon({
+                user_id: e.value.user_id,
+                lokasi_gedung: JSON.parse(e.value.acara).lokasiGedung,
+                ruangan: JSON.parse(e.value.acara).ruangan,
+                tanggal: JSON.parse(e.value.acara).tanggalMulaiAcara,
+              })
+            }
+            options={dataPeminjam}
+          />
 
           <p className="mt-4 mb-2">Lokasi Gedung</p>
           <label className="flex form-control w-full max-w-xs mt-4">
             <select
+              disabled={!selectPemohon}
               onChange={(e) => {
                 setSelectOptions([]);
                 setDataInput((prev) => ({
@@ -185,7 +205,7 @@ export default function TambahLaporan() {
                 }));
               }}
               value={dataInput.lokasi_gedung}
-              className="select select-bordered bg-white placeholder:text-sm text-black"
+              className="select select-bordered bg-white placeholder:text-sm text-black disabled:bg-gray-100 disabled:border-none disabled:text-black disabled:cursor-not-allowed"
               name="lokasiGedung"
             >
               <option disabled>Pilih</option>
@@ -281,13 +301,15 @@ export default function TambahLaporan() {
 
           <p className="mt-4 mb-2">Tanggal</p>
           <input
+            disabled={!selectPemohon}
+            value={dataInput.tanggal}
             onChange={(e) =>
               setDataInput({ ...dataInput, tanggal: e.target.value })
             }
             type="date"
             placeholder="Type here"
             name="tanggal"
-            className="input input-bordered w-full max-w-xs bg-white"
+            className="input input-bordered w-full max-w-xs bg-white disabled:bg-gray-100 disabled:border-none disabled:text-black disabled:cursor-not-allowed"
           />
 
           <p className="mt-4 mb-2">Denda</p>

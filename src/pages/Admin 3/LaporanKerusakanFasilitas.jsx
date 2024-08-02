@@ -101,15 +101,13 @@ function LaporanKerusakanFasilitas() {
                       <td>{item.tanggal}</td>
                       <td>{convertRupiah(item.denda)}</td>
                       <td className="uderline cursor-pointer">
-                        {item.admin_utama_status !== "Belum Bayar" && (
-                          <a
-                            href={item.bukti_pembayaran}
-                            target="_blank"
-                            className="underline"
-                          >
-                            Lihat Bukti
-                          </a>
-                        )}
+                        <a
+                          href={item.bukti_kerusakan}
+                          target="_blank"
+                          className="underline"
+                        >
+                          Lihat Bukti
+                        </a>
                       </td>
                       <td>
                         <p className="py-2 font-semibold text-sm bg-green-300 rounded-lg">
