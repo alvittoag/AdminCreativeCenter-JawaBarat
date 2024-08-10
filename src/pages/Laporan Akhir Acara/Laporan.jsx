@@ -46,8 +46,9 @@ export default function Laporan() {
         <SideNav />
         <div className="">
           <div className=" mx-10 mt-10 text-black">
-            <p className="text-black font-semibold text-lg">
-              Laporan Akhir Acara Bogor Creative Center
+          <p className="text-sm">Laporan Akhir Acara</p>
+            <p className="text-black font-semibold text-3xl">
+              Bogor Creative Center
             </p>
             <CetakLaporanAkhir data={data} />
           </div>

@@ -42,11 +42,11 @@ export default function PCC() {
 
   return (
     <div>
-      <div className="flex bg-white">
+      <div className="flex bg-slate-50">
         <SideNav />
         <div className="overflow-x-auto">
           <div className="flex mx-10 mt-10">
-            <p className="text-black font-semibold text-lg">
+            <p className="text-black font-semibold text-3xl">
               Purwakarta Creative Center
             </p>
           </div>

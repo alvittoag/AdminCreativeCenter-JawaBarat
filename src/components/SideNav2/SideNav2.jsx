@@ -4,9 +4,9 @@ import { NavLink } from "react-router-dom";
 export default function SideNav2({ setActive }) {
   return (
     <div>
-      <ul className="menu rounded-box border h-screen bg-white w-56 text-black">
+      <ul className="menu  border h-screen bg-green-700 text-white w-56 ">
         <li>
-          <h2 className="menu-title text-black">Data Permohonan</h2>
+          <h2 className="menu-title text-white">Data Permohonan</h2>
           <ul>
             <li onClick={() => setActive("dataPemohon")}>
               <a>Data Pemohon</a>

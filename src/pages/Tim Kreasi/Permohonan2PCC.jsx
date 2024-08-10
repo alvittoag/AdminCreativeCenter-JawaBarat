@@ -114,8 +114,9 @@ export default function Permohonan2PCC() {
       <div className="flex bg-white">
         <SideNav />
         <div className="overflow-x-auto">
-          <div className="flex mx-10 mt-10">
-            <p className="text-black font-semibold text-lg">
+          <div className=" mx-10 mt-10">
+          <p className="text-sm text-black">Permohonan Acara</p>
+            <p className="text-black font-semibold text-3xl">
               Purwakarta Creative Center
             </p>
           </div>
@@ -126,7 +127,7 @@ export default function Permohonan2PCC() {
             <table className="table">
               {/* head */}
               <thead>
-                <tr className="text-black text-center bg-blue-200">
+                <tr className="text-black text-center bg-green-200">
                   <th>No Permohonan</th>
                   <th>Status</th>
                   <th>Pemohon</th>
@@ -182,20 +183,7 @@ export default function Permohonan2PCC() {
                           <div className="flex flex-col">
                             {/* Confirm */}
                             <button onClick={() => handleConfirm(item.id)}>
-                              <img
-                                src="src\assets\checklist.png"
-                                alt=""
-                                className="mb-2 cursor-pointer"
-                              />
-                            </button>
-
-                            {/* Tolak */}
-                            <button onClick={() => handleTolak(item.id)}>
-                              <img
-                                src="src\assets\remove.png"
-                                alt=""
-                                className="cursor-pointer"
-                              />
+                              <p className="bg-green-500 p-2 rounded-lg text-white">Setujui</p>
                             </button>
                           </div>
                         </td>

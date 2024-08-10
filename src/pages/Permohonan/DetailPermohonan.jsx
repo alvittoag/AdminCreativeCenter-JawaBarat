@@ -17,7 +17,7 @@ export default function DetailPermohonan() {
   const dataAcara = convertStringify(acara);
 
   return (
-    <div className="bg-white h-screxen">
+    <div className="bg-slate-50 h-screxen">
       <div className="flex">
         <SideNav2 setActive={setActive} />
 

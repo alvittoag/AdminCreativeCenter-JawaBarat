@@ -147,7 +147,7 @@ function LandingPage() {
 
   return (
     <>
-      <div className="flex bg-white h-screen text-black">
+      <div className="flex bg-slate-50 h-screen text-black">
         <SideNav />
 
         <div className="flex flex-col w-screen">

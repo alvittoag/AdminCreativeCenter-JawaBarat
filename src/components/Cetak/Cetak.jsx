@@ -69,11 +69,11 @@ export default function Cetak({ data }) {
   };
 
   return (
-    <div className=" mx-10 mt-10 text-black">
+    <div className=" mx-10 mt-10 bg-slate-100 rounded-lg pb-5 py-2 px-5 text-black">
       <p className="my-4 text-sm font-semibold">Cetak Laporan</p>
       <div className="flex text-sm items-center mt-4">
         <div className="flex items-center w-56">
-          <p>Dari</p>
+          <p className="mr-4">Dari</p>
           <input
             value={inputValue.dari}
             onChange={(e) =>
@@ -81,11 +81,11 @@ export default function Cetak({ data }) {
             }
             type="date"
             placeholder="Type here"
-            className="input input-bordered w-full max-w-xs text-black bg-slate-300"
+            className="input input-bordered w-full max-w-xs text-black bg-white"
           />
         </div>
         <div className="flex items-center w-56 mx-4">
-          <p>Hingga</p>
+          <p className="mr-4">Hingga</p>
           <input
             value={inputValue.hingga}
             onChange={(e) =>
@@ -93,12 +93,12 @@ export default function Cetak({ data }) {
             }
             type="date"
             placeholder="Type here"
-            className="input input-bordered w-full max-w-xs text-black bg-slate-300"
+            className="input input-bordered w-full max-w-xs text-black bg-white"
           />
         </div>
         <button
           onClick={() => handleFilter(inputValue.dari, inputValue.hingga)}
-          className="btn"
+          className="btn bg-green-500 text-white border-white hover:bg-white hover:text-green-500 hover:border-green-500"
         >
           Cetak
         </button>

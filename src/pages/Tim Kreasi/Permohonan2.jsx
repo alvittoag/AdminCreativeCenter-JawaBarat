@@ -185,20 +185,7 @@ export default function Permohonan2() {
                           <div className="flex flex-col">
                             {/* Confirm */}
                             <button onClick={() => handleConfirm(item.id)}>
-                              <img
-                                src="src\assets\checklist.png"
-                                alt=""
-                                className="mb-2 cursor-pointer"
-                              />
-                            </button>
-
-                            {/* Tolak */}
-                            <button onClick={() => handleTolak(item.id)}>
-                              <img
-                                src="src\assets\remove.png"
-                                alt=""
-                                className="cursor-pointer"
-                              />
+                              <p className="bg-green-500 p-2 rounded-lg text-white">Setujui</p>
                             </button>
                           </div>
                         </td>

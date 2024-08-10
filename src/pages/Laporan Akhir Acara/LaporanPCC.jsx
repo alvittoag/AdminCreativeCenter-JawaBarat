@@ -46,8 +46,9 @@ export default function LaporanPCC() {
         <SideNav />
         <div className="">
           <div className=" mx-10 mt-10 text-black">
-            <p className="text-black font-semibold text-lg">
-              Laporan Akhir Acara Purwakarta Creative Center
+            <p className="text-sm">Laporan Akhir Acara</p>
+            <p className="text-black font-semibold text-3xl">
+            Purwakarta Creative Center
             </p>
 
             <CetakLaporanAkhir data={data} />

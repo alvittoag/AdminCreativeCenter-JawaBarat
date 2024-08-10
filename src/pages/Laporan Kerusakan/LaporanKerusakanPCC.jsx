@@ -108,8 +108,9 @@ export default function LaporanKerusakanPCC() {
 
         <div className="flex flex-col w-screen ">
           <div className=" mx-10 mt-10 text-black mb-10">
-            <p className="text-black font-semibold text-lg">
-              Laporan Kerusakan Fasilitas Purwakarta Creative Center
+          <p className="text-sm">Laporan Kerusakan Fasilitas</p>
+            <p className="text-black font-semibold text-3xl">
+              Purwakarta Creative Center
             </p>
             <CetakLaporanKerusakan data={data} />
           </div>

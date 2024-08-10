@@ -44,11 +44,11 @@ export default function Permohonan() {
 
   return (
     <div>
-      <div className="flex bg-white">
+      <div className="flex bg-slate-50">
         <SideNav />
         <div className="overflow-x-auto">
           <div className="flex mx-10 mt-10">
-            <p className="text-black font-semibold text-lg">
+            <p className="text-black font-semibold text-3xl">
               Bogor Creative Center
             </p>
           </div>
@@ -58,7 +58,7 @@ export default function Permohonan() {
             <table className="table">
               {/* head */}
               <thead>
-                <tr className="text-black text-center bg-blue-200">
+                <tr className="text-black text-center bg-blue-100">
                   <th>No Permohonan</th>
                   <th>Status</th>
                   <th>Pemohon</th>
@@ -95,7 +95,7 @@ export default function Permohonan() {
                       >
                         <td>
                           <p
-                            className={`font-bold p-1 text-sm text-center rounded-sm ${
+                            className={`font-semibold p-1 text-sm text-center rounded-lg ${
                               item.admin_status === "Diterima" && "bg-green-300"
                             } ${
                               item.admin_status === "Baru" && "bg-slate-100"

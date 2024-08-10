@@ -23,22 +23,22 @@ export default function SideNav() {
   console.log(type);
   return (
     <div>
-      <div className="sidenav flex flex-col justify-between bg-white w-56 h-screen  drop-shadow-md text-black">
+      <div className="sidenav flex flex-col justify-between bg-green-700 text-white w-56 h-screen  drop-shadow-md">
         <div className="">
-          <p className="text-sm text-slate-400 my-5 mx-7">MAIN MENU</p>
+          <p className="text-sm my-5 mx-7">MAIN MENU</p>
           <ul className="menu rounded-box ">
             {/* Admin 1 */}
             {type === 1 && (
               <>
                 <NavLink to="/">
                   <li className="flex">
-                    <a>Dashboard (admin1)</a>
+                    <a>Dashboard</a>
                   </li>
                 </NavLink>
 
                 <li>
                   <details>
-                    <summary className="text-md">Permohonan (admin1)</summary>
+                    <summary className="text-md">Permohonan</summary>
                     <ul className="text-sm">
                       <NavLink to="/permohonanTimKreasi">
                         <li>
@@ -62,7 +62,7 @@ export default function SideNav() {
                 <li>
                   <details>
                     <summary className="text-md">
-                      Laporan Akhir (admin1)
+                      Laporan Akhir
                     </summary>
                     <ul className="text-sm">
                       <NavLink to="/laporanAkhir">
@@ -87,7 +87,7 @@ export default function SideNav() {
                 <li>
                   <details>
                     <summary className="text-md">
-                      Laporan Kerusakan (admin1)
+                      Laporan Kerusakan
                     </summary>
                     <ul className="text-sm">
                       <NavLink to="/laporanKerusakan">
@@ -116,13 +116,13 @@ export default function SideNav() {
               <>
                 <NavLink to="/dashboard">
                   <li className="flex">
-                    <a>Dashboard (admin2)</a>
+                    <a>Dashboard</a>
                   </li>
                 </NavLink>
 
                 <li>
                   <details>
-                    <summary className="text-md">Permohonan (admin2)</summary>
+                    <summary className="text-md">Permohonan</summary>
                     <ul className="text-sm">
                       <NavLink to="/permohonan">
                         <li>
@@ -149,7 +149,7 @@ export default function SideNav() {
             {type === 3 && (
               <NavLink to="/laporanKerusakanFasilitas">
                 <li className="flex">
-                  <a>Dashboard (admin3)</a>
+                  <a>Dashboard</a>
                 </li>
               </NavLink>
             )}
@@ -158,7 +158,6 @@ export default function SideNav() {
 
         <div className="">
           <button onClick={handleLogout} className="flex ml-6 text-sm my-8">
-            <img src="src\assets\logout.png" alt="" className="w-5 h-5" />
             <p>Logout</p>
           </button>
         </div>

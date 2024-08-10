@@ -41,27 +41,26 @@ function LaporanKerusakanFasilitas() {
         <div className="flex flex-col w-screen overflow-x-auto">
           <div className=" mx-10 mt-10 text-black mb-10">
             <p className="text-black font-semibold text-lg">
-              Laporan Akhir Acara Bogor Creative Center
             </p>
             <p className="my-4 text-sm font-semibold">Cetak Laporan</p>
             <div className="flex text-sm items-center mt-4">
               <div className="flex items-center w-56">
-                <p>Dari</p>
+                <p className="mr-4">Dari</p>
                 <input
                   type="date"
                   placeholder="Type here"
-                  className="input input-bordered w-full max-w-xs text-black bg-slate-300"
+                  className="input input-bordered w-full max-w-xs text-black bg-white"
                 />
               </div>
               <div className="flex items-center w-56 mx-4">
-                <p>Hingga</p>
+                <p className="mr-4">Hingga</p>
                 <input
                   type="date"
                   placeholder="Type here"
-                  className="input input-bordered w-full max-w-xs text-black bg-slate-300"
+                  className="input input-bordered w-full max-w-xs text-black bg-white"
                 />
               </div>
-              <div className="btn">Cetak</div>
+              <div className="btn  bg-green-500 text-white border-white hover:bg-white hover:text-green-500 hover:border-green-500">Cetak</div>
             </div>
           </div>
 
@@ -101,16 +100,18 @@ function LaporanKerusakanFasilitas() {
                       <td>{item.tanggal}</td>
                       <td>{convertRupiah(item.denda)}</td>
                       <td className="uderline cursor-pointer">
-                        <a
-                          href={item.bukti_kerusakan}
-                          target="_blank"
-                          className="underline"
-                        >
-                          Lihat Bukti
-                        </a>
+                        {item.admin_utama_status !== "Belum Bayar" && (
+                          <a
+                            href={item.bukti_pembayaran}
+                            target="_blank"
+                            className="underline"
+                          >
+                            Lihat Bukti
+                          </a>
+                        )}
                       </td>
                       <td>
-                        <p className="py-2 font-semibold text-sm bg-green-300 rounded-lg">
+                        <p className="p-2 font-semibold text-sm bg-green-300 rounded-lg">
                           {item.admin_status}
                         </p>
                       </td>

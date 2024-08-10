@@ -46,8 +46,9 @@ export default function LaporanAD() {
         <SideNav />
         <div className="">
           <div className=" mx-10 mt-10 text-black">
-            <p className="text-black font-semibold text-lg">
-              Laporan Akhir Acara Ruang Kreatif Ahmad Djuhara
+          <p className="text-sm">Laporan Akhir Acara</p>
+            <p className="text-black font-semibold text-3xl">
+            Ruang Kreatif Ahmad Djuhara
             </p>
 
             <CetakLaporanAkhir data={data} />
